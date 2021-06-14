@@ -1,0 +1,43 @@
+#!/bin/bash
+if [ $# -eq 1 ] 
+then
+
+    if [[ "$1" == "-Deb" ]]
+    then
+        wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/openconnect/8.02-1build1/openconnect_8.02.orig.tar.gz
+        tar -xf openconnect_8.02.orig.tar.gz
+        rm openconnect_8.02.orig.tar.gz
+        sudo apt-get install build-essential gettext autoconf automake libproxy-dev libxml2-dev libtool vpnc-scripts pkg-config zlib1g-dev
+        sudo apt-get install libssl-dev
+        cd openconnect-8.02/
+        ./configure
+        sudo make install && sudo ldconfig
+    fi
+
+    if [[ "$1" == "-Ar" ]]
+    then
+        wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/openconnect/8.02-1build1/openconnect_8.02.orig.tar.gz
+        tar -xf openconnect_8.02.orig.tar.gz
+        rm openconnect_8.02.orig.tar.gz
+        sudo apt-get install build-essential gettext autoconf automake libproxy-dev libxml2-dev libtool vpnc-scripts pkg-config zlib1g-dev
+        sudo apt-get install openssl
+        cd openconnect-8.02/
+        ./configure
+        sudo make install && sudo ldconfig
+    fi
+
+    if [[ "$1" == "-Rh" ]]
+    then
+        wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/openconnect/8.02-1build1/openconnect_8.02.orig.tar.gz
+        tar -xf openconnect_8.02.orig.tar.gz
+        rm openconnect_8.02.orig.tar.gz
+        sudo apt-get install build-essential gettext autoconf automake libproxy-dev libxml2-dev libtool vpnc-scripts pkg-config zlib1g-dev
+        sudo apt-get install openssl-devel
+        cd openconnect-8.02/
+        ./configure
+        sudo make install && sudo ldconfig
+    fi
+
+else
+    printf "Missing/Wrong Arguments: <OS>\n------------------\nPossible Arguments: \nArch : -Ar \nDebian, Ubuntu : -Deb \nRed Hat, Fedora, CentOS : -Rh \n"
+fi
